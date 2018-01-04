@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def friends
-    binding.pry
     user_id = client.user_id
     @friends = client.friends(user_id)
   end

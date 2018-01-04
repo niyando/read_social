@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
     hash = { oauth_token: session[:token], oauth_token_secret: session[:token_secret]}
     request_token  = OAuth::RequestToken.from_hash(@consumer, hash)
     access_token = request_token.get_access_token
-    session[:token] = request_token.token
-    session[:token_secret] = request_token.secret
+    session[:token] = access_token.token
+    session[:token_secret] = access_token.secret
     redirect_to '/friends'
   end
 
