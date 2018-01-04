@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get '/signout', to: 'sessions#destroy', as: 'signout'
 
   get '/friends', to: 'users#friends'
+  get '/friends/:id', to: 'friends#show'
 
 end

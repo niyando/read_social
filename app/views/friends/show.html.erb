@@ -1,0 +1,8 @@
+
+  <% @books.each do |b| %>
+  <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
+    <img src="<%= b[:book][:image_url] %>">
+    <p><%= b[:book][:title] %></p>
+  </div>
+  
+  <% end %>

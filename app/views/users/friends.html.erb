@@ -1,1 +1,7 @@
-<%= @friends %>
+<ul>
+  <% @friends[:user].each do |f| %>
+    <li><a href="/friends/<%=f[:id]%>">
+      <%= f[:name] %>
+    </a></li>
+  <% end %>
+</ul>
