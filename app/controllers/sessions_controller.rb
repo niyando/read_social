@@ -13,13 +13,13 @@ class SessionsController < ApplicationController
     hash = { oauth_token: session[:token], oauth_token_secret: session[:token_secret]}
     request_token  = OAuth::RequestToken.from_hash(@consumer, hash)
     access_token = request_token.get_access_token
-    # user = User.from_omniauth(access_token)
-    # session[:user_id] = user.id
-    redirect_to '/'
+    session[:token] = request_token.token
+    session[:token_secret] = request_token.secret
+    redirect_to '/friends'
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:token] = nil
     redirect_to root_url
   end
 
