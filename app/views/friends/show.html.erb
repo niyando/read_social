@@ -4,7 +4,7 @@
   <% @cr_books.each do |b| %>
     <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
       <img src="<%= b[:book][:image_url] %>">
-      <p><%= b[:book][:title] %></p>
+      <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
     </div>
   <% end %>
 <% end %>
@@ -14,7 +14,7 @@
   <% @r_books.each do |b| %>
     <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
       <img src="<%= b[:book][:image_url] %>">
-      <p><%= b[:book][:title] %></p>
+      <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
     </div>
   <% end %>
 <% end %>
@@ -24,7 +24,7 @@
   <% @tr_books.each do |b| %>
     <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
       <img src="<%= b[:book][:image_url] %>">
-      <p><%= b[:book][:title] %></p>
+      <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
     </div>
   <% end %>
 <% end %>
