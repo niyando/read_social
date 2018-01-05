@@ -1,7 +1,27 @@
-<ul>
-  <% @friends[:user].each do |f| %>
-    <li><a href="/friends/<%=f[:id]%>">
-      <%= f[:name] %>
-    </a></li>
+<style>
+  .container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+  }
+  .item {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+    min-width: 150px;
+  }
+  .item > img{
+    margin-bottom: 5px;
+    border-radius: 25%;
+  }
+</style>
+
+<div class="container">
+  <% @friends.each do |f| %>
+    <div class="item">
+      <img src="<%=f[:small_image_url]%>" alt=""><br>
+      <a href="/friends/<%=f[:id]%>"><%= f[:name] %></a>
+    </div>
   <% end %>
-</ul>
+</div>
