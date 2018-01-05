@@ -1,8 +1,32 @@
 
-  <% @books.each do |b| %>
-  <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
-    <img src="<%= b[:book][:image_url] %>">
-    <p><%= b[:book][:title] %></p>
-  </div>
-  
+<% if @cr_books.size > 0 %>
+  <h2>Currently Reading</h2><hr><br>
+  <% @cr_books.each do |b| %>
+    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
+      <img src="<%= b[:book][:image_url] %>">
+      <p><%= b[:book][:title] %></p>
+    </div>
   <% end %>
+<% end %>
+
+<% if @r_books.size > 0 %>
+  <h2>Read</h2><hr><br>
+  <% @r_books.each do |b| %>
+    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
+      <img src="<%= b[:book][:image_url] %>">
+      <p><%= b[:book][:title] %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @tr_books.size > 0 %>
+  <h2>Wants To Read</h2><hr><br>
+  <% @tr_books.each do |b| %>
+    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
+      <img src="<%= b[:book][:image_url] %>">
+      <p><%= b[:book][:title] %></p>
+    </div>
+  <% end %>
+<% end %>
+
+  
