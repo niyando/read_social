@@ -27,7 +27,16 @@
     flex-wrap: wrap;
     text-align: center;
   }
+  div.book{
+    margin:10px; 
+    display:inline-block; 
+    width:150px; 
+    text-align:center;
+  }
 </style>
+
+<% shelf = params[:shelf] || 'read' %>
+
 <div id="friend">
   <p><%= @friend %></p>
 </div>
@@ -42,7 +51,7 @@
 <div class="books">
 <% if @books.size > 0 %>
   <% @books.each do |b| %>
-    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
+    <div class="book">
       <img src="<%= b[:book][:image_url] %>">
       <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
     </div>
@@ -53,3 +62,29 @@
   </p>
 <% end %>  
 </div>
+
+
+<script>
+  $(document).ready(function(){
+
+    function htmlForBook(b){
+      var str = "<div class='book'><img src='"+b.book.image_url+"'><p><a href='"+b.book.link+"'>"+b.book.title+"</a></p></div>";
+      return str;
+    }
+
+    function renderMoreBooks(page){
+      $.get('<%= request.path %>/more-books?shelf=<%= shelf %>'+'&page='+page).then(function(res){
+        var str = "";
+        res.forEach(function(book){
+          str += htmlForBook(book);
+        });
+        $('div.books').append(str);
+      });
+    }
+
+    <% 2.upto(@pages.to_i) do |p| %>
+      renderMoreBooks(<%= p %>);
+    <% end %>
+
+  });
+</script>

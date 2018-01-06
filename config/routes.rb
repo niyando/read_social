@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/friends', to: 'users#friends'
   get '/more-friends', to: 'users#more_friends'
+  
   get '/friends/:id', to: 'friends#show'
+  get 'friends/:id/more-books', to: 'friends#more_books'
 
 end
