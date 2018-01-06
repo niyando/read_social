@@ -44,7 +44,7 @@
       });
     }
 
-    <% 2.upto(@pages) do |p| %>
+    <% 2.upto(@pages.to_i) do |p| %>
       renderMoreFriends(<%= p %>);
     <% end %>
 
