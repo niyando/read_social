@@ -1,32 +1,54 @@
 
-<% if @cr_books.size > 0 %>
-  <h2>Currently Reading</h2><hr><br>
-  <% @cr_books.each do |b| %>
+<style>
+  div#friend{
+    font-size: 18px;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  div#shelves{
+    text-align:center;
+    margin-bottom:50px;
+  }
+  div#shelves a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #2c3e50;
+    padding: 3px;
+  }
+  div#shelves a.current{
+    border-bottom: 1px solid #c0392b;
+  }
+  div.books{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+</style>
+<div id="friend">
+  <p><%= @friend %></p>
+</div>
+<div id="shelves">
+  <a class="<%= 'current' if params[:shelf].blank? %>" href="?">Read</a>
+  &nbsp; &nbsp;
+  <a class="<%= 'current' if params[:shelf] == "currently-reading" %>" href="?shelf=currently-reading">Currently Reading</a>
+  &nbsp; &nbsp;
+  <a class="<%= 'current' if params[:shelf] == "to_read" %>" href="?shelf=to_read">Wants to Read</a>
+</div>
+
+<div class="books">
+<% if @books.size > 0 %>
+  <% @books.each do |b| %>
     <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
       <img src="<%= b[:book][:image_url] %>">
       <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
     </div>
   <% end %>
-<% end %>
-
-<% if @r_books.size > 0 %>
-  <h2>Read</h2><hr><br>
-  <% @r_books.each do |b| %>
-    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
-      <img src="<%= b[:book][:image_url] %>">
-      <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
-    </div>
-  <% end %>
-<% end %>
-
-<% if @tr_books.size > 0 %>
-  <h2>Wants To Read</h2><hr><br>
-  <% @tr_books.each do |b| %>
-    <div style="margin:10px; display:inline-block; width:150px; text-align:center;">
-      <img src="<%= b[:book][:image_url] %>">
-      <p><a href="<%= b[:book][:link] %>" target="_blank"><%= b[:book][:title] %></a></p>
-    </div>
-  <% end %>
-<% end %>
-
-  
+<% else %>
+  <p>
+    No books found for this user in this category.
+  </p>
+<% end %>  
+</div>
