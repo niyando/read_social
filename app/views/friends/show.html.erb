@@ -63,7 +63,10 @@
 <% end %>  
 </div>
 <br>
-<div id="bottom"></div>
+
+<div id="bottom" style="visibility:none; text-align:center;">
+  <img id="loader" src="https://cdn.dsgarms.com/Plugins/XcellenceIT.Plugin.Solr.Products/Content/loading_icon.gif" alt="">
+</div>
 
 
 <script>
@@ -78,12 +81,14 @@
     }
 
     function renderMoreBooks(page){
+      $("div#bottom").show();
       $.get('<%= request.path %>/more-books?shelf=<%= shelf %>'+'&page='+page).then(function(res){
         var str = "";
         res.forEach(function(book){
           str += htmlForBook(book);
         });
         $('div.books').append(str);
+        $("div#bottom").hide();
       });
     }
 
