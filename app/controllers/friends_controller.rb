@@ -14,7 +14,7 @@ class FriendsController < ApplicationController
   end
 
   def get_shelf(name)
-    client.shelf(params[:id], name)[:books]
+    client.shelf(params[:id], name, {per_page: 200})[:books]
   rescue Goodreads::Forbidden => e
     []
   end
