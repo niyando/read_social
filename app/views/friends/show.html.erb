@@ -62,9 +62,14 @@
   </p>
 <% end %>  
 </div>
+<br>
+<div id="bottom"></div>
 
 
 <script>
+  var pages = <%=@pages.to_i%>;
+  var current_page = 1;
+
   $(document).ready(function(){
 
     function htmlForBook(b){
@@ -82,9 +87,17 @@
       });
     }
 
-    <% 2.upto(@pages.to_i) do |p| %>
-      renderMoreBooks(<%= p %>);
-    <% end %>
+    $(window).scroll(function() {
+      if(current_page !== pages){
+        var end = $("div#bottom").offset().top; 
+        var viewEnd = $(window).scrollTop() + $(window).height(); 
+        var distance = end - viewEnd;
+        if(distance < 500){
+          current_page++;
+          renderMoreBooks(current_page);
+        }
+      }
+    });    
 
   });
 </script>
