@@ -5,6 +5,7 @@ class FriendsController < ApplicationController
   def show
     @friend = client.user(params[:id])[:name]
     books = get_shelf(shelf_param)
+
     if books[:total].to_i > 0
       @pages = ((books[:total].to_i / books[:end].to_i) + 1) 
     end
@@ -25,7 +26,7 @@ class FriendsController < ApplicationController
   def get_shelf(name, page=1)
     client.shelf(params[:id], name, {page: page, per_page: 30})
   rescue Goodreads::Forbidden => e
-    []
+    {books: []}
   end
   
 end
