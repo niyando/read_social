@@ -1,28 +1,8 @@
-== README
+===Read Social
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web application that makes it easier to discover what your friends (on Goodreads) are reading :books:.
+Built on Ruby on Rails and data powered by Goodreads public API.
 
-Things you may want to cover:
+Demo deloyed to Heroku https://readsocial.herokuapp.com/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Hope this helps you find your next favourite book.
