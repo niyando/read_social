@@ -1,20 +1,38 @@
 <style>
+  div.title{
+    color: #2c3e50;
+    font-size: 22px;
+    margin: 20px;
+    text-align: center;
+  }
+  @media screen and (min-width: 800px) {
+    .container{
+      width: 70%;
+      margin:auto;
+    }
+  }
   .container {
+    margin-top: 40px;
     display: flex;
     flex-flow: wrap;
-    justify-content: center;
   }
   .item {
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
     text-align: center;
-    min-width: 150px;
+    width: 150px;
   }
   .item > img{
     margin-bottom: 5px;
-    border-radius: 25%;
+    border-radius: 15%;
   }
 </style>
+
+<div class="title">
+  <p>
+    Check what your friends read.
+  </p>
+</div>
 
 <div class="container">
   <% @friends.each do |f| %>
@@ -25,8 +43,15 @@
   <% end %>
 </div>
 
+<div id="bottom" style="display:none; text-align:center;">
+  <img id="loader" src="https://cdn.dsgarms.com/Plugins/XcellenceIT.Plugin.Solr.Products/Content/loading_icon.gif" alt="">
+</div>
 
 <script>
+
+  var pages = <%=@pages.to_i%>;
+  var current_page = 1;
+
   $(document).ready(function(){
 
     function htmlForFriend(f){
@@ -35,18 +60,28 @@
     }
 
     function renderMoreFriends(page){
+      $("div#bottom").show();
       $.get('/more-friends?page='+page).then(function(res){
         var str = "";
         res.forEach(function(friend){
           str += htmlForFriend(friend);
         });
         $('div.container').append(str);
+        $("div#bottom").hide();
       });
     }
 
-    <% 2.upto(@pages.to_i) do |p| %>
-      renderMoreFriends(<%= p %>);
-    <% end %>
+    $(window).scroll(function() {
+      if(current_page !== pages){
+        var end = $("div#bottom").offset().top; 
+        var viewEnd = $(window).scrollTop() + $(window).height(); 
+        var distance = end - viewEnd;
+        if(distance < 500){
+          current_page++;
+          renderMoreFriends(current_page);
+        }
+      }
+    });
 
   });
 </script>

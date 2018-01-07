@@ -1,11 +1,18 @@
 
 <style>
+
   div#friend{
     font-size: 18px;
     color: #2c3e50;
     text-align: center;
     margin-top: 30px;
     margin-bottom: 15px;
+  }
+  span.back{
+    position: absolute;
+    left: 10%;
+    top: 30px;
+    font-size: 16px;
   }
   div#shelves{
     text-align:center;
@@ -18,14 +25,20 @@
     padding: 3px;
   }
   div#shelves a.current{
-    border-bottom: 1px solid #c0392b;
+    border-bottom: 2px solid #c0392b;
   }
   div.books{
     margin-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     text-align: center;
+  }
+  @media screen and (min-width: 800px) {
+    .books{
+      width: 70%;
+      margin:auto;
+    }
   }
   div.book{
     margin:10px; 
@@ -37,7 +50,9 @@
 
 <% shelf = params[:shelf] || 'read' %>
 
+
 <div id="friend">
+  <span class="back"><a href="/friends"> < All Friends</a></span>
   <p><%= @friend %></p>
 </div>
 <div id="shelves">
