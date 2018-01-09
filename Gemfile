@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'oauth'
-gem 'goodreads', git: 'https://github.com/niyando/goodreads.git'
+gem 'goodreads', '0.6.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
